@@ -149,8 +149,8 @@ class Base:
         self.x2 = self.WIDTH
 
     def move(self):
-        self.x1 = self.VEL
-        self.x2 = self.VEL
+        self.x1 -= self.VEL
+        self.x2 -= self.VEL
 
         if self.x1 + self.WIDTH < 0:
             self.x1 = self.x2 + self.WIDTH
@@ -177,7 +177,7 @@ def draw_window(win, bird, pipes, base):
 def main():
     bird = Bird(230, 350)
     base = Base(730)
-    pipes = [Pipe(700)]
+    pipes = [Pipe(600)]
     win = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGTH))
     clock = pygame.time.Clock()
     score = 0
@@ -203,14 +203,18 @@ def main():
                 pipe.passed = True
                 add_pipe = True
 
-            if add_pipe:
-                score += 1
-                pipes.append(Pipe(700))
-
-            for r in rem:
-                pipes.remove(r)
-
             pipe.move()
+
+        if add_pipe:
+            score += 1
+            pipes.append(Pipe(600))
+
+
+        for r in rem:
+            pipes.remove(r)
+
+        if bird.y + bird.img.get_height() >= 730:
+            pass
 
         base.move()
         draw_window(win, bird, pipes, base)
