@@ -198,8 +198,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                pygame.mouse.get_pressed(bird.jump())
+
         bird.move()
         add_pipe = False
         rem = []
@@ -208,7 +207,7 @@ def main():
 
         for pipe in pipes:
             if pipe.collide(bird):
-                run = False
+                pass
 
             if pipe.x + pipe.PIPE_TOP.get_width() < 0:
                 rem.append(pipe)
@@ -228,7 +227,7 @@ def main():
             pipes.remove(r)
 
         if bird.y + bird.img.get_height() >= 730:
-            run = False
+            pass
 
         base.move()
         draw_window(win, bird, pipes, base, score)
