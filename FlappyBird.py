@@ -2,12 +2,16 @@
 # I will be using pygame as the generator for the pygame
 # This game will be used to make a training program to train an AI
 # that will learn to play the game on its own
+x = 150
+y = 30
 
 import pygame
 import neat
 import time
 import os
 import random
+os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (x,y)
+
 
 pygame.font.init()
 
@@ -199,7 +203,9 @@ def main():
             if event.type == pygame.QUIT:
                 run = False
             if event.type == pygame.MOUSEBUTTONDOWN:
-                pygame.mouse.get_pressed(bird.jump())
+                bird.jump()
+                
+
         bird.move()
         add_pipe = False
         rem = []
